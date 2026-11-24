@@ -1,0 +1,2 @@
+C:\MinGW2026\bin\ar.exe qc lib\libOctQuillLib.a CMakeFiles/OctQuillLib.dir/src/core/editor.cpp.obj CMakeFiles/OctQuillLib.dir/src/core/input_reader.cpp.obj CMakeFiles/OctQuillLib.dir/src/core/renderer.cpp.obj CMakeFiles/OctQuillLib.dir/src/core/terminal_session.cpp.obj CMakeFiles/OctQuillLib.dir/src/core/view.cpp.obj
+C:\MinGW2026\bin\ranlib.exe lib\libOctQuillLib.a
