@@ -75,9 +75,11 @@ CMakeFiles/OctQuillLib.dir/src/core/editor.cpp.obj: C:/Users/27376/Desktop/Homew
   C:/MinGW2026/include/c++/16.2.0/bits/stl_iterator_base_types.h \
   C:/MinGW2026/include/c++/16.2.0/bits/stl_pair.h \
   C:/MinGW2026/include/c++/16.2.0/bits/stl_raw_storage_iter.h \
+  C:/MinGW2026/include/c++/16.2.0/bits/stl_relops.h \
   C:/MinGW2026/include/c++/16.2.0/bits/stl_tempbuf.h \
   C:/MinGW2026/include/c++/16.2.0/bits/stl_uninitialized.h \
   C:/MinGW2026/include/c++/16.2.0/bits/stl_vector.h \
+  C:/MinGW2026/include/c++/16.2.0/bits/stream_iterator.h \
   C:/MinGW2026/include/c++/16.2.0/bits/streambuf.tcc \
   C:/MinGW2026/include/c++/16.2.0/bits/streambuf_iterator.h \
   C:/MinGW2026/include/c++/16.2.0/bits/string_view.tcc \
@@ -113,6 +115,7 @@ CMakeFiles/OctQuillLib.dir/src/core/editor.cpp.obj: C:/Users/27376/Desktop/Homew
   C:/MinGW2026/include/c++/16.2.0/ios \
   C:/MinGW2026/include/c++/16.2.0/iosfwd \
   C:/MinGW2026/include/c++/16.2.0/istream \
+  C:/MinGW2026/include/c++/16.2.0/iterator \
   C:/MinGW2026/include/c++/16.2.0/memory \
   C:/MinGW2026/include/c++/16.2.0/new \
   C:/MinGW2026/include/c++/16.2.0/ostream \
@@ -129,6 +132,7 @@ CMakeFiles/OctQuillLib.dir/src/core/editor.cpp.obj: C:/Users/27376/Desktop/Homew
   C:/MinGW2026/include/c++/16.2.0/tuple \
   C:/MinGW2026/include/c++/16.2.0/type_traits \
   C:/MinGW2026/include/c++/16.2.0/typeinfo \
+  C:/MinGW2026/include/c++/16.2.0/utility \
   C:/MinGW2026/include/c++/16.2.0/vector \
   C:/MinGW2026/include/c++/16.2.0/x86_64-w64-mingw32/bits/atomic_word.h \
   C:/MinGW2026/include/c++/16.2.0/x86_64-w64-mingw32/bits/basic_file.h \
@@ -565,9 +569,11 @@ CMakeFiles/OctQuillLib.dir/src/core/input_reader.cpp.obj: C:/Users/27376/Desktop
   C:/Users/27376/Desktop/Homework/3_C++/proj3/include/input_reader.h
 
 CMakeFiles/OctQuillLib.dir/src/core/renderer.cpp.obj: C:/Users/27376/Desktop/Homework/3_C++/proj3/src/core/renderer.cpp \
+  C:/MinGW2026/include/c++/16.2.0/algorithm \
   C:/MinGW2026/include/c++/16.2.0/backward/auto_ptr.h \
   C:/MinGW2026/include/c++/16.2.0/backward/binders.h \
   C:/MinGW2026/include/c++/16.2.0/bit \
+  C:/MinGW2026/include/c++/16.2.0/bits/algorithmfwd.h \
   C:/MinGW2026/include/c++/16.2.0/bits/align.h \
   C:/MinGW2026/include/c++/16.2.0/bits/alloc_traits.h \
   C:/MinGW2026/include/c++/16.2.0/bits/allocated_ptr.h \
@@ -624,10 +630,12 @@ CMakeFiles/OctQuillLib.dir/src/core/renderer.cpp.obj: C:/Users/27376/Desktop/Hom
   C:/MinGW2026/include/c++/16.2.0/bits/stdexcept_except.h \
   C:/MinGW2026/include/c++/16.2.0/bits/stdexcept_throw.h \
   C:/MinGW2026/include/c++/16.2.0/bits/stdexcept_throwfwd.h \
+  C:/MinGW2026/include/c++/16.2.0/bits/stl_algo.h \
   C:/MinGW2026/include/c++/16.2.0/bits/stl_algobase.h \
   C:/MinGW2026/include/c++/16.2.0/bits/stl_bvector.h \
   C:/MinGW2026/include/c++/16.2.0/bits/stl_construct.h \
   C:/MinGW2026/include/c++/16.2.0/bits/stl_function.h \
+  C:/MinGW2026/include/c++/16.2.0/bits/stl_heap.h \
   C:/MinGW2026/include/c++/16.2.0/bits/stl_iterator.h \
   C:/MinGW2026/include/c++/16.2.0/bits/stl_iterator_base_funcs.h \
   C:/MinGW2026/include/c++/16.2.0/bits/stl_iterator_base_types.h \
@@ -640,6 +648,7 @@ CMakeFiles/OctQuillLib.dir/src/core/renderer.cpp.obj: C:/Users/27376/Desktop/Hom
   C:/MinGW2026/include/c++/16.2.0/bits/streambuf_iterator.h \
   C:/MinGW2026/include/c++/16.2.0/bits/string_view.tcc \
   C:/MinGW2026/include/c++/16.2.0/bits/stringfwd.h \
+  C:/MinGW2026/include/c++/16.2.0/bits/uniform_int_dist.h \
   C:/MinGW2026/include/c++/16.2.0/bits/unique_ptr.h \
   C:/MinGW2026/include/c++/16.2.0/bits/uses_allocator.h \
   C:/MinGW2026/include/c++/16.2.0/bits/uses_allocator_args.h \
@@ -674,6 +683,7 @@ CMakeFiles/OctQuillLib.dir/src/core/renderer.cpp.obj: C:/Users/27376/Desktop/Hom
   C:/MinGW2026/include/c++/16.2.0/new \
   C:/MinGW2026/include/c++/16.2.0/ostream \
   C:/MinGW2026/include/c++/16.2.0/pstl/execution_defs.h \
+  C:/MinGW2026/include/c++/16.2.0/pstl/glue_algorithm_defs.h \
   C:/MinGW2026/include/c++/16.2.0/pstl/glue_memory_defs.h \
   C:/MinGW2026/include/c++/16.2.0/pstl/pstl_config.h \
   C:/MinGW2026/include/c++/16.2.0/sstream \
@@ -1691,6 +1701,8 @@ C:/MinGW2026/include/c++/16.2.0/bits/string_view.tcc:
 
 C:/MinGW2026/include/c++/16.2.0/bits/stl_raw_storage_iter.h:
 
+C:/MinGW2026/include/c++/16.2.0/bits/stl_relops.h:
+
 C:/MinGW2026/x86_64-w64-mingw32/include/objidl.h:
 
 C:/MinGW2026/include/c++/16.2.0/bits/stl_tempbuf.h:
@@ -1704,6 +1716,8 @@ C:/MinGW2026/x86_64-w64-mingw32/include/wingdi.h:
 C:/MinGW2026/x86_64-w64-mingw32/include/excpt.h:
 
 C:/MinGW2026/include/c++/16.2.0/bits/stl_vector.h:
+
+C:/MinGW2026/include/c++/16.2.0/bits/stream_iterator.h:
 
 C:/MinGW2026/x86_64-w64-mingw32/include/virtdisk.h:
 
@@ -1813,6 +1827,10 @@ C:/MinGW2026/lib/gcc/x86_64-w64-mingw32/16.2.0/include/avx10_2copyintrin.h:
 
 C:/MinGW2026/include/c++/16.2.0/iosfwd:
 
+C:/MinGW2026/lib/gcc/x86_64-w64-mingw32/16.2.0/include/xtestintrin.h:
+
+C:/MinGW2026/include/c++/16.2.0/iterator:
+
 C:/MinGW2026/include/c++/16.2.0/memory:
 
 C:/MinGW2026/lib/gcc/x86_64-w64-mingw32/16.2.0/include/clflushoptintrin.h:
@@ -1872,6 +1890,8 @@ C:/MinGW2026/x86_64-w64-mingw32/include/cderr.h:
 C:/MinGW2026/lib/gcc/x86_64-w64-mingw32/16.2.0/include/avx512vpopcntdqintrin.h:
 
 C:/MinGW2026/include/c++/16.2.0/typeinfo:
+
+C:/MinGW2026/include/c++/16.2.0/utility:
 
 C:/MinGW2026/lib/gcc/x86_64-w64-mingw32/16.2.0/include/rtmintrin.h:
 
@@ -2136,8 +2156,6 @@ C:/MinGW2026/x86_64-w64-mingw32/include/basetsd.h:
 C:/MinGW2026/lib/gcc/x86_64-w64-mingw32/16.2.0/include/xsavecintrin.h:
 
 C:/MinGW2026/lib/gcc/x86_64-w64-mingw32/16.2.0/include/xsaveoptintrin.h:
-
-C:/MinGW2026/lib/gcc/x86_64-w64-mingw32/16.2.0/include/xtestintrin.h:
 
 C:/MinGW2026/x86_64-w64-mingw32/include/_bsd_types.h:
 

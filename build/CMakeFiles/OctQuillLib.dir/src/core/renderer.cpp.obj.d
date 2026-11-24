@@ -421,6 +421,12 @@ CMakeFiles/OctQuillLib.dir/src/core/renderer.cpp.obj: \
  C:/Users/27376/Desktop/Homework/3_C++/proj3/include/view.h \
  C:/Users/27376/Desktop/Homework/3_C++/proj3/include/mode.h \
  C:/Users/27376/Desktop/Homework/3_C++/proj3/include/input_reader.h \
+ C:/MinGW2026/include/c++/16.2.0/algorithm \
+ C:/MinGW2026/include/c++/16.2.0/bits/stl_algo.h \
+ C:/MinGW2026/include/c++/16.2.0/bits/algorithmfwd.h \
+ C:/MinGW2026/include/c++/16.2.0/bits/stl_heap.h \
+ C:/MinGW2026/include/c++/16.2.0/bits/uniform_int_dist.h \
+ C:/MinGW2026/include/c++/16.2.0/pstl/glue_algorithm_defs.h \
  C:/MinGW2026/include/c++/16.2.0/iostream \
  C:/MinGW2026/include/c++/16.2.0/ostream \
  C:/MinGW2026/include/c++/16.2.0/bits/ostream.h \

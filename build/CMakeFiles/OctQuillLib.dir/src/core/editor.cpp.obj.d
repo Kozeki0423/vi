@@ -455,4 +455,8 @@ CMakeFiles/OctQuillLib.dir/src/core/editor.cpp.obj: \
  C:/MinGW2026/include/c++/16.2.0/bits/codecvt.h \
  C:/MinGW2026/include/c++/16.2.0/x86_64-w64-mingw32/bits/basic_file.h \
  C:/MinGW2026/include/c++/16.2.0/x86_64-w64-mingw32/bits/c++io.h \
- C:/MinGW2026/include/c++/16.2.0/bits/fstream.tcc
+ C:/MinGW2026/include/c++/16.2.0/bits/fstream.tcc \
+ C:/MinGW2026/include/c++/16.2.0/iterator \
+ C:/MinGW2026/include/c++/16.2.0/bits/stream_iterator.h \
+ C:/MinGW2026/include/c++/16.2.0/utility \
+ C:/MinGW2026/include/c++/16.2.0/bits/stl_relops.h

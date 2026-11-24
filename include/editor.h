@@ -22,10 +22,17 @@ public:
     std::size_t curRow() const { return cur_row_; }
     std::size_t curCol() const { return cur_col_; }
     std::size_t topLine() const { return top_line_; }
+    std::size_t leftCol() const { return left_col_; }
     int textRows() const { return view_.rows(); }
+    int textCols() const { return view_.cols(); }
     Mode mode() const { return mode_; }
     const std::string& statusMsg() const { return status_msg_; }
     const std::string& cmdline() const { return cmdline_; }
+    // 可视选区（仅在 Visual 模式下有意义）
+    std::size_t selStartRow() const;
+    std::size_t selStartCol() const;
+    std::size_t selEndRow() const;
+    std::size_t selEndCol() const;
 private:
     void openFile(const std::string& path);
     bool saveFile();
@@ -44,6 +51,12 @@ private:
     void paste();
     void pushUndo();
     void undo();
+    void redo();
+    // 选区动作
+    void normalizeSelection(std::size_t& sr, std::size_t& sc,
+                            std::size_t& er, std::size_t& ec) const;
+    void deleteSelection();
+    void yankSelection();
     // 工具
     void clampCursor();
     void setStatus(const std::string& msg);
@@ -53,21 +66,32 @@ private:
     std::vector<std::string> lines_;
     std::string filepath_;
     std::string pending_keys_;
-    bool is_new_file_   = false;
     bool dirty_         = false;
 
-    size_t cur_row_ = 0;
-    size_t cur_col_ = 0;
-    size_t top_line_ = 0;
-    size_t left_col_ = 0;
+    std::size_t cur_row_ = 0;
+    std::size_t cur_col_ = 0;
+    std::size_t top_line_ = 0;
+    std::size_t left_col_ = 0;
 
     Mode mode_ = Mode::Normal;
     bool running_ = false;
     std::string status_msg_;
     std::string cmdline_;
 
+    // 选区锚点（进入 Visual 时记录）
+    std::size_t sel_row_ = 0;
+    std::size_t sel_col_ = 0;
+
+    // 寄存器
     std::vector<std::string>    yank_buffer_;
+    bool                        yank_linewise_ = true;   // true=整行, false=字符
+
     std::vector<Snapshot>       undo_stack_;
+    std::vector<Snapshot>       redo_stack_;
+
+    // 换行风格与尾换行（读写保真）
+    std::string eol_ = "\n";
+    bool ends_with_newline_ = true;
 
     View        view_;
     Renderer    renderer_;

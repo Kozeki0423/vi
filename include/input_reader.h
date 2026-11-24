@@ -15,7 +15,8 @@ enum class Key {
     End         = 10,
     PageUp      = 11,
     PageDown    = 12,
-    Unknown     = 13
+    CtrlR       = 13,
+    Unknown     = 14
 };
 
 struct KeyEvent {

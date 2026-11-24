@@ -26,6 +26,7 @@ KeyEvent InputReader::readKey() {
         case '\n': return {Key::Enter, 0};
         case 8:   return {Key::Backspace, 0};
         case '\t': return {Key::Tab, 0};
+        case 0x12: return {Key::CtrlR, 0};
         default:
             if(c >= 0x20 && c < 0x7F) return {Key::Char, static_cast<char>(c)};
             return {Key::Unknown, 0};
@@ -69,6 +70,7 @@ KeyEvent InputReader::readKey() {
         case 0x7F:
         case 0x08: return {Key::Backspace, 0};
         case '\t': return {Key::Tab, 0};
+        case 0x12: return {Key::CtrlR, 0};
         default:
             if(c >= 0x20 && c < 0x7F) return {Key::Char, static_cast<char>(c)};
             return {Key::Unknown, 0};
