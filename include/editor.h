@@ -28,6 +28,20 @@ public:
     Mode mode() const { return mode_; }
     const std::string& statusMsg() const { return status_msg_; }
     const std::string& cmdline() const { return cmdline_; }
+    const std::string& filePath() const { return filepath_; }
+    bool dirty() const { return dirty_; }
+    std::size_t lineCount() const { return lines_.size(); }
+    // 行号槽宽度（数字位数 + 1 个空格）
+    int gutterWidth() const {
+        std::size_t d = 1, n = lines_.size();
+        while(n >= 10) { n /= 10; ++d; }
+        return static_cast<int>(d) + 1;
+    }
+    // 文本区可用列数（总宽减去行号槽）
+    int textAreaCols() const {
+        int c = view_.cols() - gutterWidth();
+        return c > 0 ? c : 1;
+    }
     // 可视选区（仅在 Visual 模式下有意义）
     std::size_t selStartRow() const;
     std::size_t selStartCol() const;

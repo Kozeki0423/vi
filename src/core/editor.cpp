@@ -107,11 +107,11 @@ void Editor::ensureCursorVisible(std::size_t row, std::size_t col) {
     if(row >= top_line_ + static_cast<std::size_t>(view_.rows()))
         top_line_ = row - view_.rows() + 1;
 
-    int cols = view_.cols();
+    int cols = textAreaCols();
     if(cols <= 0) { left_col_ = 0; return; }
     if(col < left_col_) left_col_ = col;
     if(col >= left_col_ + static_cast<std::size_t>(cols))
-        left_col_ = col - cols + 1;
+        left_col_ = col - static_cast<std::size_t>(cols) + 1;
 }
 
 // 四路分发入口
