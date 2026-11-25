@@ -7,7 +7,8 @@ enum class Mode {
     Normal  = 0,
     Insert  = 1,
     Visual  = 2,
-    Command = 3
+    Command = 3,
+    Search  = 4
 };
 
 struct Snapshot {

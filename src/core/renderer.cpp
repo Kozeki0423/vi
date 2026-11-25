@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <iostream>
 #include <sstream>
+#include <utility>
+#include <vector>
 
 namespace {
 
@@ -13,10 +15,12 @@ std::string baseName(const std::string& p) {
     return s == std::string::npos ? p : p.substr(s + 1);
 }
 
-// 单字符样式：选区 > 当前行 > 普通
-std::string styleFor(bool selected, bool current) {
-    if(selected) return "\033[48;5;60m";    // 选区背景（蓝）
-    if(current)  return "\033[48;5;237m";   // 当前行背景（灰）
+// 单字符样式：选区 > 当前命中(橙) > 其它命中(黄) > 当前行 > 普通
+std::string styleFor(bool selected, bool cur_match, bool matched, bool current) {
+    if(selected)  return "\033[48;5;60m";       // 选区背景（蓝）
+    if(cur_match) return "\033[48;5;208;30m";   // 光标所在命中（橙底黑字）
+    if(matched)   return "\033[48;5;142;30m";   // 其它搜索命中（黄底黑字）
+    if(current)   return "\033[48;5;237m";      // 当前行背景（灰）
     return "\033[0m";
 }
 
@@ -49,8 +53,9 @@ void Renderer::draw(const Editor& editor) {
     std::size_t screen_col = static_cast<std::size_t>(gutter) + vis_col + 1;
     out << "\033[" << screen_row << ";" << screen_col << "H";
 
-    // Insert 模式显示光标 其余隐藏
-    out << (editor.mode() == Mode::Insert ? "\033[?25h" : "\033[?25l");
+    // Insert / Search 模式下需要看到光标
+    bool show_cursor = (editor.mode() == Mode::Insert || editor.mode() == Mode::Search);
+    out << (show_cursor ? "\033[?25h" : "\033[?25l");
 
     std::cout << out.str() << std::flush;
 }
@@ -59,7 +64,8 @@ std::string Renderer::renderStatusBar(const Editor& e) const {
     const char* mode =
         e.mode() == Mode::Normal ? "NORMAL" :
         e.mode() == Mode::Insert ? "INSERT" :
-        e.mode() == Mode::Visual ? "VISUAL" : "COMMAND";
+        e.mode() == Mode::Visual ? "VISUAL" :
+        e.mode() == Mode::Search ? "SEARCH" : "COMMAND";
 
     std::size_t total = e.lineCount();
     std::size_t pct = 0;
@@ -108,7 +114,8 @@ std::string Renderer::renderLine(const Editor& e, std::size_t buf_line) const {
         std::string pad(static_cast<std::size_t>(std::max(0, gutter - 1 - static_cast<int>(ns.size()))), ' ');
         g << (current ? "\033[1;7m" : "\033[90m") << pad << ns << RESET;
     } else {
-        g << "\033[90m" << std::string(static_cast<std::size_t>(gutter - 1), ' ') << "~" << RESET;
+        // 超出文件末尾：~ 与行号右对齐同一列
+        g << "\033[90m" << std::string(static_cast<std::size_t>(std::max(0, gutter - 2)), ' ') << "~" << RESET;
     }
     g << " ";
 
@@ -136,6 +143,30 @@ std::string Renderer::renderLine(const Editor& e, std::size_t buf_line) const {
         }
     }
 
+    // 本行内所有搜索命中区间
+    std::vector<std::pair<std::size_t, std::size_t>> matches;
+    if(e.searchActive() && !e.searchTerm().empty()) {
+        const std::string& term = e.searchTerm();
+        std::size_t pos = line.find(term);
+        while(pos != std::string::npos) {
+            matches.emplace_back(pos, pos + term.size() - 1);   // 含端点
+            pos = line.find(term, pos + 1);
+        }
+    }
+    auto in_match = [&](std::size_t i) {
+        for(auto& m : matches) if(i >= m.first && i <= m.second) return true;
+        return false;
+    };
+    // 仅搜索时：找出“包含光标”的那一处匹配（本行），其它命中保持黄色，当前命中标橙
+    bool has_cur_match = false;
+    std::size_t cs = 0, ce = 0;
+    if(e.searchActive() && !matches.empty() && buf_line == e.curRow()) {
+        std::size_t cc = e.curCol();
+        for(auto& m : matches) {
+            if(cc >= m.first && cc <= m.second) { has_cur_match = true; cs = m.first; ce = m.second; break; }
+        }
+    }
+
     std::ostringstream body;
     std::string prev;
     auto emit = [&](const std::string& st) {
@@ -143,13 +174,14 @@ std::string Renderer::renderLine(const Editor& e, std::size_t buf_line) const {
     };
     for(std::size_t i = begin; i < end; ++i) {
         bool sel = has_sel && i >= ss && i <= se;
-        emit(styleFor(sel, current));
+        bool cm  = has_cur_match && i >= cs && i <= ce;
+        emit(styleFor(sel, cm, in_match(i), current));
         body << line[i];
     }
     // 当前行铺满文本区，使高亮成整条
     int used = static_cast<int>(end - begin);
     if(current && used < text_cols) {
-        emit(styleFor(false, true));
+        emit(styleFor(false, false, false, true));
         body << std::string(static_cast<std::size_t>(text_cols - used), ' ');
     }
     body << RESET;
@@ -161,5 +193,7 @@ std::string Renderer::renderCmdline(const Editor& e) const {
     std::string s = e.cmdline();
     if(e.mode() == Mode::Command)
         return ":" + s;
+    if(e.mode() == Mode::Search)
+        return (e.searchBackward() ? "?" : "/") + s;
     return s;
 }
